@@ -7,15 +7,9 @@ import Results from './screens/results';
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {
-      screen: Home,
-    },
-    Quiz: {
-      screen: Quiz,
-    },
-    Result: {
-      screen: Results,
-    },
+    Home: { screen: Home },
+    Quiz: { screen: Quiz },
+    Result: { screen: Results },
   },
   {
     initialRouteName: 'Home',

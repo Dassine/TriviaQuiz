@@ -42,7 +42,6 @@ export const getNextQuestion = (currIndex, answer, navigation) => async (
   dispatch,
   getState
 ) => {
-  console.log('next');
   const { questions, score } = getState().quizReducer;
 
   const currQuestion = questions[currIndex];

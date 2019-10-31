@@ -10,8 +10,8 @@ const Results = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const questions = useSelector(({ quizReducer }) => quizReducer.questions);
-  const score = useSelector(({ quizReducer }) => quizReducer.score);
   const answers = useSelector(({ quizReducer }) => quizReducer.answers);
+  const score = useSelector(({ quizReducer }) => quizReducer.score);
 
   const onPlayAgain = () => dispatch(resetQuiz(navigation));
 
