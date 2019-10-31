@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Provider } from 'react-redux';
 
-import Home from './screens/home'
+import store from './redux/store';
+import Router from './Router';
 
-const App = () => <Home />
+const App = () => (
+  <Provider store={store}>
+    <Router />
+  </Provider>
+);
 
-export default App
+export default App;
