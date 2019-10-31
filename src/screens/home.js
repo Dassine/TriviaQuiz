@@ -1,10 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Home = () => {
+import LoadingButton from '../components/loadingButton';
+import { fetchQuiz } from '../redux/actions/quizActions';
+
+const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(({ quizReducer }) => quizReducer.isFetching);
+
+  const startGame = () => dispatch(fetchQuiz(navigation));
+
   const titleText = 'Welcome to the Trivia Challenge!';
   const descriptionText =
-    'You will be presented with 10 true or false questions.';
+    'You will be presented with 10 True or False questions.';
   const questionText = 'Can you score 100%?';
   const buttonText = 'START';
 
@@ -14,6 +24,11 @@ const Home = () => {
       <Text style={title}>{titleText}</Text>
       <Text style={subTitle}>{descriptionText}</Text>
       <Text style={subTitle}>{questionText}</Text>
+      <LoadingButton
+        text={buttonText}
+        onPress={startGame}
+        isLoading={isLoading}
+      />
     </View>
   );
 };

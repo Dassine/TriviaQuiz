@@ -10,7 +10,7 @@ const AppNavigator = createStackNavigator(
     Home: {
       screen: Home,
     },
-    Question: {
+    Quiz: {
       screen: Quiz,
     },
     Result: {
