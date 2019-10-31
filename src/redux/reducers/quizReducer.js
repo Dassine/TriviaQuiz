@@ -1,8 +1,9 @@
 import {
-  FETCH_QUESTION,
-  FETCH_QUESTION_SUCCESS,
-  FETCH_QUESTION_ERROR,
+  FETCH_QUIZ,
+  FETCH_QUIZ_SUCCESS,
+  FETCH_QUIZ_ERROR,
   NEXT_QUESTION,
+  RESET_QUIZ,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -18,10 +19,10 @@ const initialState = {
 
 const quizReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_QUESTION: {
+    case FETCH_QUIZ: {
       return { ...state, isFetching: true };
     }
-    case FETCH_QUESTION_SUCCESS: {
+    case FETCH_QUIZ_SUCCESS: {
       const { questions, currQuestion, currCategory } = action.payload;
       return {
         ...state,
@@ -31,7 +32,7 @@ const quizReducer = (state = initialState, action) => {
         isFetching: false,
       };
     }
-    case FETCH_QUESTION_ERROR: {
+    case FETCH_QUIZ_ERROR: {
       return {
         ...state,
         isFetching: false,
@@ -49,12 +50,15 @@ const quizReducer = (state = initialState, action) => {
       const answers = [...state.answers, currAnswer];
       return {
         ...state,
-        score,
         answers,
+        score,
         currIndex,
         currQuestion,
         currCategory,
       };
+    }
+    case RESET_QUIZ: {
+      return initialState;
     }
     default:
       return state;

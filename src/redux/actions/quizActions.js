@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 import {
-  FETCH_QUESTION,
-  FETCH_QUESTION_SUCCESS,
-  FETCH_QUESTION_ERROR,
+  FETCH_QUIZ,
+  FETCH_QUIZ_SUCCESS,
+  FETCH_QUIZ_ERROR,
   NEXT_QUESTION,
+  RESET_QUIZ,
 } from './actionTypes';
 
 export const fetchQuiz = navigation => async dispatch => {
-  dispatch({ type: FETCH_QUESTION });
+  dispatch({ type: FETCH_QUIZ });
 
   await axios
     .get('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean', {
@@ -20,7 +21,7 @@ export const fetchQuiz = navigation => async dispatch => {
       const { question, category } = questions[0];
 
       dispatch({
-        type: FETCH_QUESTION_SUCCESS,
+        type: FETCH_QUIZ_SUCCESS,
         payload: {
           questions,
           currQuestion: question,
@@ -31,7 +32,7 @@ export const fetchQuiz = navigation => async dispatch => {
     })
     .catch(error => {
       dispatch({
-        type: FETCH_QUESTION_ERROR,
+        type: FETCH_QUIZ_ERROR,
         payload: error,
       });
     });
@@ -76,4 +77,9 @@ export const getNextQuestion = (currIndex, answer, navigation) => async (
 
     navigation.navigate('Result');
   }
+};
+
+export const resetQuiz = navigation => async dispatch => {
+  dispatch({ type: RESET_QUIZ });
+  navigation.navigate('Home');
 };
